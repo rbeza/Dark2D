@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://djmdp6ulffb8e"]
+
+[ext_resource type="Texture2D" uid="uid://byytani23abgy" path="res://assets/sprites/portal.png" id="1_hi15i"]
+[ext_resource type="Script" path="res://scenes/portal.gd" id="1_j1n3t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ai58"]
+radius = 580.086
+
+[sub_resource type="Animation" id="Animation_whe8b"]
+resource_name = "portal"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.26573]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvp3e"]
+_data = {
+"portal": SubResource("Animation_whe8b")
+}
+
+[node name="Portal" type="Area2D"]
+scale = Vector2(0.1, 0.1)
+collision_layer = 4
+collision_mask = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 98000.0
+linear_damp_space_override = 1
+linear_damp = 33.664
+angular_damp_space_override = 1
+angular_damp = 26.43
+script = ExtResource("1_j1n3t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+rotation = 6.26573
+texture = ExtResource("1_hi15i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2ai58")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nvp3e")
+}
+autoplay = "portal"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
