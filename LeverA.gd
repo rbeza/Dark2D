@@ -1,7 +1,7 @@
 extends Node2D
 
 signal player_interacted
-
+##test
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var animated_sprite = $AnimatedSprite2D
 ##@onready var lever_sound = preload("string")
