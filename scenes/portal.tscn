@@ -44,7 +44,6 @@ script = ExtResource("1_j1n3t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 2
-rotation = 6.26573
 texture = ExtResource("1_hi15i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -54,6 +53,5 @@ shape = SubResource("CircleShape2D_2ai58")
 libraries = {
 "": SubResource("AnimationLibrary_nvp3e")
 }
-autoplay = "portal"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

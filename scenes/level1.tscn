@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://7h0ebdxrbhok"]
+[gd_scene load_steps=25 format=3 uid="uid://7h0ebdxrbhok"]
 
 [ext_resource type="Script" path="res://scenes/level1.gd" id="1_e7sy5"]
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="2_7iw77"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://djc21k126mp7i" path="res://scenes/platform.tscn" id="8_hop3r"]
 [ext_resource type="PackedScene" uid="uid://cdvy8fokh0la5" path="res://scenes/slime.tscn" id="9_ckmd4"]
 [ext_resource type="PackedScene" uid="uid://djmdp6ulffb8e" path="res://scenes/portal.tscn" id="10_mxl8p"]
+[ext_resource type="PackedScene" uid="uid://c42ab3e6kfugc" path="res://scenes/gravity_field.tscn" id="11_ejb6o"]
+[ext_resource type="PackedScene" uid="uid://dfecx404ppiih" path="res://interaction/lever_a.tscn" id="12_xdxx7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m2bmk"]
 texture = ExtResource("5_o2a50")
@@ -656,11 +658,22 @@ theme_override_font_sizes/font_size = 8
 text = "Fall off and die."
 
 [node name="Portal" parent="." instance=ExtResource("10_mxl8p")]
-position = Vector2(116, -35)
+position = Vector2(264, -43)
 gravity = -50000.0
 
-[node name="test" parent="." instance=ExtResource("9_ckmd4")]
-position = Vector2(-31, -100)
+[node name="GravityField" parent="." instance=ExtResource("11_ejb6o")]
+position = Vector2(-303, -97)
+
+[node name="LeverA" parent="." instance=ExtResource("12_xdxx7")]
+position = Vector2(107, 54)
+
+[node name="LeverA2" parent="." instance=ExtResource("12_xdxx7")]
+position = Vector2(115, 19)
+
+[node name="Lever" type="Node" parent="."]
 
 [connection signal="player_entered_portal" from="Portal" to="." method="_on_portal_player_entered_portal"]
-[connection signal="player_spin" from="Portal" to="Player" method="_on_portal_player_spin"]
+[connection signal="player_entered_portal" from="Portal" to="Player" method="_on_portal_player_entered_portal"]
+[connection signal="player_interacted" from="LeverA" to="Portal" method="_on_lever_a_player_interacted"]
+[connection signal="player_interacted" from="LeverA2" to="Portal" method="_on_lever_a_player_interacted"]
+[connection signal="player_interacted" from="LeverA2" to="Portal" method="_on_lever_a_2_player_interacted"]

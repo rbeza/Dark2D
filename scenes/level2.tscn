@@ -656,6 +656,11 @@ theme_override_font_sizes/font_size = 8
 text = "Fall off and die."
 
 [node name="Portal" parent="." instance=ExtResource("10_a764u")]
-position = Vector2(168, -29)
+position = Vector2(172, -39)
+
+[node name="Portal2" parent="." instance=ExtResource("10_a764u")]
+position = Vector2(34, -55)
 
 [connection signal="player_entered_portal" from="Portal" to="." method="_on_portal_player_entered_portal"]
+[connection signal="player_entered_portal" from="Portal" to="Player" method="_on_portal_player_entered_portal"]
+[connection signal="player_entered_portal" from="Portal2" to="." method="_on_portal_2_player_entered_portal"]
